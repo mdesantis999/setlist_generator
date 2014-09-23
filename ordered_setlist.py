@@ -13,7 +13,7 @@ songbook = yaml.safe_load(allsongs)
 
 allsongs.close()
 
-songs = songbook.keys()
+song_titles = songbook.keys()
 
 random.shuffle(songs)
 
@@ -68,12 +68,40 @@ if shortfall > 0:
       num_slow = num_slow + 1
 
 
-#build a list of song tempos
+#build a profile list of song tempos
+#TODO: build a profile list for each set
+
+profile = []
+
+fast = 'fast'
+
+medium = 'medium'
+
+slow = 'slow'
+
+profile.extend([fast] * (num_fast - 2))
+
+profile.extend([medium] * num_medium)
+
+profile.extend([slow] * num_slow)
+
+random.shuffle(profile)
+
+profile.insert(0, 'fast') #first song is fast
+
+profile.insert(len(profile), 'fast') #last song is fast
 
 
 #==BUILD THE SETS==#
 
+#get the list of all songs
+#songbook is the dictionary with attributes
+#song_titles is the random sorted list of songs
+#profile is the setlist profile
+
+#iterate through the profile and find a song that matches the tempo in the profile
+#put the song in the list and take it out of the pool of available songs
 
 
-#dump the list of all songs
-#print yaml.safe_load(allsongs)
+
+#print the setlists
