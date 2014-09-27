@@ -4,8 +4,6 @@ import yaml
 
 import random
 
-import collections
-
 
 #open the list of all songs
 
@@ -22,9 +20,7 @@ random.shuffle(songs)
 
 #input number of sets
 
-#num_setlists = input('Enter number of sets: ')
-
-num_setlists = 1 #just one set for now
+num_setlists = input('Enter number of sets: ')
 
 #input number of songs per set    
 
@@ -103,47 +99,9 @@ profile.insert(len(profile), 'fast') #last song is fast
 #song_titles is the random sorted list of songs
 #profile is the setlist profile
 
-def search(values, searchfor):
-  for k in values:
-    for v in values[k]:
-      if searchFor in v:
-        return k
-  return None
-
-setlist = []
-
 #iterate through the profile and find a song that matches the tempo in the profile
 #put the song in the list and take it out of the pool of available songs
 
-for p in profile:
-
-  if p = 'fast':
-
-    #find the next song on the list where tempo = 4 or 5
-
-    #put that song into the list for the setlist
-
-    #take that song out of the list of all available songs
-
-  elif p = 'medium':
-
-    #find the next song in the list where tempo = 4 or 3
-
-    #put that song into the list for the setlist
-
-    #take that song out of the list of all available songs
-
-  elif p = 'slow':
-
-    #find the next song in the list where tempo is less than 3
-
-    #put that song into the list for the setlist
-
-    #take that song out of the list of all available songs
-
-  else:
-
-    #error couldn't find fast, medium or slow
 
 
 #print the setlists
