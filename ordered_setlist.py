@@ -4,6 +4,8 @@ import yaml
 
 import random
 
+import collections
+
 
 #open the list of all songs
 
@@ -13,18 +15,55 @@ songbook = yaml.safe_load(allsongs)
 
 allsongs.close()
 
-song_titles = songbook.keys()
+fast_songs = []
 
-random.shuffle(songs)
+medium_songs = []
 
+slow_songs = []
+
+for key in songbook.keys():
+
+    if songbook[key] > 3:
+
+        fast_songs.append(key)
+
+    elif songbook[key] == 3:
+
+        medium_songs.append(key)
+
+    elif songbook[key] < 3:
+
+        slow_songs.append(key)
+
+    else:
+
+        print "Anomalies: ", key
+
+random.shuffle(fast_songs)
+
+random.shuffle(medium_songs)
+
+random.shuffle(slow_songs)
 
 #input number of sets
 
-num_setlists = input('Enter number of sets: ')
+#num_setlists = input('Enter number of sets: ')
 
-#input number of songs per set    
+num_setlists = 1 #just one set for now
 
-num_songs = input('Enter number of songs per set: ')
+#input number of songs per set
+
+while True:
+
+    try:
+
+        num_songs = int(raw_input('Enter number of songs per set: '))
+
+        break
+
+    except ValueError:
+
+        print "Input has to be a number, try again."
 
 
 #initialize the setlist profile
@@ -94,14 +133,44 @@ profile.insert(len(profile), 'fast') #last song is fast
 
 #==BUILD THE SETS==#
 
-#get the list of all songs
-#songbook is the dictionary with attributes
-#song_titles is the random sorted list of songs
-#profile is the setlist profile
 
 #iterate through the profile and find a song that matches the tempo in the profile
 #put the song in the list and take it out of the pool of available songs
 
+for p in profile:
+
+  if p == 'fast':
+
+    song = fast_songs[0]
+
+    fast_songs.pop(0)
+
+    print song
+
+
+  elif p == 'medium':
+
+    song = medium_songs[0]
+
+    medium_songs.pop(0)
+
+    print song
+
+
+  elif p == 'slow':
+
+    song = slow_songs[0]
+
+    slow_songs.pop(0)
+
+    print song
+
+
+  else:
+
+    print "no song"
+
+    #error couldn't find fast, medium or slow
 
 
 #print the setlists
