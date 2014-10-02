@@ -47,9 +47,17 @@ random.shuffle(slow_songs)
 
 #input number of sets
 
-#num_setlists = input('Enter number of sets: ')
+while True:
 
-num_setlists = 1 #just one set for now
+    try:
+
+        num_setlists = int(raw_input('Enter number of sets: '))
+
+        break
+
+    except ValueError:
+
+        print "Input has to be a number, try again."
 
 #input number of songs per set
 
@@ -137,40 +145,51 @@ profile.insert(len(profile), 'fast') #last song is fast
 #iterate through the profile and find a song that matches the tempo in the profile
 #put the song in the list and take it out of the pool of available songs
 
-for p in profile:
+num_setlists = num_setlists + 1
 
-  if p == 'fast':
+for number in range(1, num_setlists):
 
-    song = fast_songs[0]
+    print "SET ", number
 
-    fast_songs.pop(0)
+    for p in profile:
 
-    print song
+      if p == 'fast':
 
+        song = fast_songs[0]
 
-  elif p == 'medium':
+        fast_songs.pop(0)
 
-    song = medium_songs[0]
-
-    medium_songs.pop(0)
-
-    print song
+        print song
 
 
-  elif p == 'slow':
+      elif p == 'medium':
 
-    song = slow_songs[0]
+        song = medium_songs[0]
 
-    slow_songs.pop(0)
+        medium_songs.pop(0)
 
-    print song
+        print song
 
 
-  else:
+      elif p == 'slow':
 
-    print "no song"
+        song = slow_songs[0]
 
-    #error couldn't find fast, medium or slow
+        slow_songs.pop(0)
+
+        print song
+
+        if song == '':
+
+            song = medium_songs[0]
+
+            medium_songs.pop(0)
+
+      else:
+
+        print "no song"
+
+        #error couldn't find fast, medium or slow
 
 
 #print the setlists
